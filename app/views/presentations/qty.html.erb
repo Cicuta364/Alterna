@@ -1,0 +1,11 @@
+<h3>Resultados</h3>
+
+  <h4><%= @presentation.title %></h4>
+  <ul>
+    <% @presentation.answers.each do |answer| %>
+      <li> <%= answer.question%> | <%= answer.click %> Voto(s)</li>
+    <% end %>
+  </ul>
+
+
+<%= link_to 'Volver', presentations_path %>

@@ -1,0 +1,32 @@
+<h1>Nueva Respuesta</h1>
+<%= form_for(@answer) do |f| %>
+  <% if @answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+      <ul>
+      <% @answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Respuesta' %><br>
+    <%= f.text_field :question %>
+  </div>
+  <% if params[:presentation_id].present? %>
+    <%= f.hidden_field :presentation_id, value: params[:presentation_id] %>
+  <% else %>
+    <div class="field">
+      <%= f.label :presentation_id, "Alternativas" %><br>
+      <%= f.collection_select :presentation_id, @presentations, :id, :title %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Volver', presentations_path %>

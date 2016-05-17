@@ -1,0 +1,12 @@
+<h2>Respuestas</h2>
+<p id="notice"><%= notice %></p>
+
+<% @answers.each do |answer| %>
+  <%= button_to "#{answer.question}", answer_click_count_path(answer), method: :post%>
+<% end %>
+<br>
+<%- if admin_signed_in? %>
+	<%= link_to 'Nuevas Respuestas', new_answer_path(presentation_id: @presentation.id) %> |
+<% end %>
+</%= link_to 'Editar', edit_presentation_path(@presentation) %>
+<%= link_to 'Volver', presentations_path %>
