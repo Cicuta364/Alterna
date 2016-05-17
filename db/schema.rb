@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160517193141) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160517193141) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "answers", force: :cascade do |t|
     t.integer  "presentation_id"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160517193141) do
     t.integer  "click"
   end
 
-  add_index "answers", ["presentation_id"], name: "index_answers_on_presentation_id"
+  add_index "answers", ["presentation_id"], name: "index_answers_on_presentation_id", using: :btree
 
   create_table "presentations", force: :cascade do |t|
     t.string   "title"
@@ -48,4 +51,5 @@ ActiveRecord::Schema.define(version: 20160517193141) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "answers", "presentations"
 end
