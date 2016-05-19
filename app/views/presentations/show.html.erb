@@ -7,7 +7,7 @@
 <br>
 <%- if admin_signed_in? %>
 	<%= link_to 'Nuevas Respuestas', new_answer_path(presentation_id: @presentation.id) %> |
-	<%= link_to 'Estadisticas', 'presentations#qty'
+
 <% end %>
 </%= link_to 'Editar', edit_presentation_path(@presentation) %>
 <%= link_to 'Volver', presentations_path %>
